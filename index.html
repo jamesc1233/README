@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>SouthHop – Cheapest flights Auckland to Dunedin</title>
+  <meta name="description" content="Live cheapest one-way fares between Auckland (AKL) and Dunedin (DUD), updated every 6 hours.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <a class="brand" href="./">
+      <img src="assets/logo.svg" alt="" width="40" height="40">
+      <span>South<b>Hop</b></span>
+    </a>
+    <span class="updated" id="updated"></span>
+  </header>
+
+  <main>
+    <section class="hero">
+      <h1>Cheapest flights<br><span id="routeTitle">Auckland → Dunedin</span></h1>
+      <p class="sub">Real fares from airline and travel-agent searches, refreshed every 6 hours. One-way, in NZ dollars.</p>
+
+      <div class="controls">
+        <div class="seg" role="tablist" aria-label="Direction">
+          <button role="tab" data-route="AKL-DUD" aria-selected="true">AKL → DUD</button>
+          <button role="tab" data-route="DUD-AKL" aria-selected="false">DUD → AKL</button>
+        </div>
+        <select id="month" aria-label="Month"></select>
+      </div>
+
+      <div class="best card" id="best"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Price by day</h2>
+        <span class="hint">Tap a bar to see that fare</span>
+      </div>
+      <div class="chart" id="chart"></div>
+    </section>
+
+    <section class="card">
+      <div class="card-head">
+        <h2>Cheapest dates</h2>
+        <span class="hint" id="count"></span>
+      </div>
+      <ol class="list" id="list"></ol>
+    </section>
+
+    <section class="also">
+      <span>Compare on:</span>
+      <a id="lnkGoogle" target="_blank" rel="noopener">Google Flights</a>
+      <a id="lnkSky" target="_blank" rel="noopener">Skyscanner</a>
+      <a href="https://www.airnewzealand.co.nz" target="_blank" rel="noopener">Air New Zealand</a>
+    </section>
+  </main>
+
+  <footer>Prices come from the Travelpayouts / Aviasales data feed and can change quickly. Always check the final price before you book.</footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
