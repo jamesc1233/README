@@ -1,92 +1,162 @@
 <!doctype html>
-<html lang="en">
+<html lang="en-NZ">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>SouthHop</title>
-  <meta name="description" content="The cheapest one-way fares between Auckland (AKL) and Dunedin (DUD), updated every 6 hours.">
+  <meta name="description" content="Low one-way fares between Auckland (AKL) and Dunedin (DUD), checked about every 6 hours.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" href="assets/fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="print.css" media="print">
 </head>
 <body>
-  <div class="wrap">
-    <header class="top">
-      <a class="brand" href="./">
-        <img src="assets/logo.svg" alt="" width="36" height="36">
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-head">
+    <div class="head-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
         <span>SouthHop</span>
       </a>
-      <span class="updated" id="updated"></span>
-    </header>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="index.html" aria-current="page">Fares</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <button class="search-btn" type="button" data-open-search>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Search
+        </button>
+      </nav>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </header>
 
-    <main>
-      <h1 id="headline">The cheapest way from Auckland to Dunedin</h1>
+  <main id="main" class="home" tabindex="-1">
+    <div class="home-intro">
+      <h1 id="headline">Low fares from Auckland to Dunedin</h1>
+      <p class="updated" id="updated" role="status"></p>
+    </div>
 
-      <section class="pass" aria-label="Cheapest fare" aria-live="polite">
-        <div class="pass-main">
-          <div class="route" id="route">
-            <div class="port">
-              <span class="code" id="fromCode">AKL</span>
-              <span class="city" id="fromCity">Auckland</span>
-            </div>
-            <div class="path">
-              <button class="swap" id="swap" type="button" aria-label="Swap direction">
-                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 8h14l-4-4M20 16H6l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-              </button>
-            </div>
-            <div class="port to">
-              <span class="code" id="toCode">DUD</span>
-              <span class="city" id="toCity">Dunedin</span>
-            </div>
+    <section class="pass is-loading" id="pass" aria-label="Lowest fare found" aria-busy="true">
+      <div class="pass-main">
+        <div class="route" id="route">
+          <div class="port">
+            <span class="code" id="fromCode">AKL</span>
+            <span class="city" id="fromCity">Auckland</span>
           </div>
-          <dl class="facts">
-            <div><dt>Date</dt><dd id="pDate">–</dd></div>
-            <div><dt>Departs</dt><dd id="pTime">–</dd></div>
-            <div><dt>Flight</dt><dd id="pFlight">–</dd></div>
-            <div><dt>Flying time</dt><dd id="pDur">–</dd></div>
-          </dl>
+          <div class="path">
+            <button class="swap" id="swap" type="button" aria-label="Swap direction: show Dunedin to Auckland">
+              <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 8h14l-4-4M20 16H6l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            </button>
+          </div>
+          <div class="port to">
+            <span class="code" id="toCode">DUD</span>
+            <span class="city" id="toCity">Dunedin</span>
+          </div>
         </div>
-        <div class="pass-stub">
-          <p class="stub-label" id="stubLabel">Lowest one-way fare</p>
-          <p class="price" id="pPrice">–</p>
-          <a class="book" id="pBook" target="_blank" rel="noopener">See this fare</a>
+        <dl class="facts">
+          <div><dt>Date</dt><dd id="pDate"><span class="sk"></span></dd></div>
+          <div><dt>Departs</dt><dd id="pTime"><span class="sk"></span></dd></div>
+          <div><dt>Flight</dt><dd id="pFlight"><span class="sk"></span></dd></div>
+          <div><dt>Flying time</dt><dd id="pDur"><span class="sk"></span></dd></div>
+        </dl>
+      </div>
+      <div class="pass-stub">
+        <p class="stub-label" id="stubLabel">Loading fares</p>
+        <p class="price" id="pPrice"><span class="sk sk-price"></span></p>
+        <div class="stub-actions">
+          <a class="btn" id="pBook" href="#" data-outbound target="_blank" rel="noopener">See this fare</a>
+          <button class="btn-quiet" type="button" id="pCopy" data-copy-target="fareText">Copy fare details</button>
         </div>
-      </section>
+        <p class="visually-hidden" id="fareText"></p>
+      </div>
+    </section>
 
-      <section class="block">
-        <h2>When to fly</h2>
-        <div class="months" id="months" role="group" aria-label="Choose a month"></div>
-      </section>
+    <section class="block" aria-labelledby="h-months">
+      <h2 id="h-months">When to fly</h2>
+      <div class="months" id="months" role="group" aria-labelledby="h-months"></div>
+    </section>
 
-      <section class="block">
-        <div class="block-head">
-          <h2>Price for each day</h2>
-          <p class="hint">Pick a day to load it onto the pass.</p>
-        </div>
-        <div class="chart-scroll"><div class="chart" id="chart"></div></div>
-      </section>
+    <section class="block" aria-labelledby="h-chart">
+      <div class="block-head">
+        <h2 id="h-chart">Price for each day</h2>
+        <p class="hint" id="chartHint">Choose a day to show it on the boarding pass. With the keyboard, use the arrow keys to move between days.</p>
+      </div>
+      <div class="chart-scroll"><div class="chart" id="chart" role="group" aria-labelledby="h-chart" aria-describedby="chartHint"></div></div>
+    </section>
 
-      <section class="block">
-        <div class="block-head">
-          <h2>Ten cheapest days</h2>
-          <p class="hint" id="count"></p>
-        </div>
-        <ol class="fares" id="list"></ol>
-      </section>
+    <section class="block" aria-labelledby="h-list">
+      <div class="block-head">
+        <h2 id="h-list">Ten cheapest days</h2>
+        <p class="hint" id="count"></p>
+      </div>
+      <ol class="fares" id="list"></ol>
+    </section>
 
-      <p class="also">
-        Compare on
-        <a id="lnkGoogle" target="_blank" rel="noopener">Google Flights</a>,
-        <a id="lnkSky" target="_blank" rel="noopener">Skyscanner</a> or
-        <a href="https://www.airnewzealand.co.nz" target="_blank" rel="noopener">Air New Zealand</a>.
-      </p>
-    </main>
+    <p class="also">
+      Compare on
+      <a id="lnkGoogle" href="https://www.google.com/travel/flights" target="_blank" rel="noopener">Google Flights</a>,
+      <a id="lnkSky" href="https://www.skyscanner.co.nz/" target="_blank" rel="noopener">Skyscanner</a> or
+      <a href="https://www.airnewzealand.co.nz" target="_blank" rel="noopener">Air New Zealand</a>.
+      Fares are one-way, in NZ dollars, and come from recent searches made on Aviasales. They can change at any time, so check the price before you pay.
+    </p>
+  </main>
 
-    <footer>Fares are one-way in NZ dollars, from recent Aviasales searches via Travelpayouts. They change often, so check the final price before you book.</footer>
-  </div>
+  <dialog class="modal" id="leave" aria-labelledby="leave-title" aria-describedby="leave-desc">
+    <h2 id="leave-title">You're leaving SouthHop</h2>
+    <div id="leave-desc">
+      <p>This fare opens on <strong id="leave-site">another website</strong>. SouthHop doesn't sell tickets, and the price there may be different from the one shown here. Check the price, baggage and fare rules before you pay.</p>
+      <p class="small">If you book, SouthHop may earn a commission. You don't pay any extra.</p>
+    </div>
+    <label class="check"><input type="checkbox" id="leave-skip"> Don't show this again while this page is open</label>
+    <div class="modal-actions">
+      <button type="button" class="btn-quiet" id="leave-cancel">Stay on SouthHop</button>
+      <a class="btn" id="leave-go" href="#" target="_blank" rel="noopener">Continue to the fare</a>
+    </div>
+  </dialog>
 
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div class="foot-about">
+        <p><strong>SouthHop</strong> is run by {{BUSINESS_NAME}}, {{CITY}}, New Zealand. Email {{CONTACT_EMAIL}}.</p>
+        <p>SouthHop shows fares found by other websites. We don't sell tickets. If you book after following a fare link, we may earn a commission from Travelpayouts. You don't pay any extra.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Policies">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html">Cookies</a>
+          <a href="refunds.html">Refunds</a>
+          <a href="accessibility.html">Accessibility</a>
+      </nav>
+      <p class="foot-small">&copy; 2026 {{BUSINESS_NAME}}. Logo and site design are original to SouthHop. Fonts: Public Sans and Big Shoulders Display, used under the SIL Open Font License. Airline names belong to their owners.</p>
+    </div>
+  </footer>
+
+  <aside class="quick" aria-label="Quick actions">
+    <a class="fab" href="contact.html">Contact us</a>
+    <button class="to-top" type="button" hidden>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="to-top-text">Back to top</span>
+    </button>
+  </aside>
+
+  <dialog class="modal search" id="search" aria-labelledby="search-title">
+    <form class="search-form" role="search" method="dialog">
+      <label id="search-title" for="search-q">Search SouthHop</label>
+      <div class="search-row">
+        <input id="search-q" type="search" autocomplete="off" spellcheck="false" placeholder="Try &ldquo;baggage&rdquo; or &ldquo;refund&rdquo;">
+        <button type="button" class="btn-quiet" id="search-close">Close search</button>
+      </div>
+    </form>
+    <p class="search-status" id="search-status" role="status"></p>
+    <ul class="search-results" id="search-results"></ul>
+  </dialog>
+
+  <script src="site.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

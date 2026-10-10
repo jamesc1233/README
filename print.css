@@ -1,0 +1,19 @@
+/* Print: plain black text on white, no navigation or floating controls, link addresses written out. */
+@page { margin: 18mm 16mm; }
+* { background: #fff !important; color: #000 !important; box-shadow: none !important; }
+body { font: 11pt/1.5 "Public Sans", Arial, sans-serif; padding: 0; }
+.skip, .site-nav, .menu-btn, .progress, .fab, .to-top, dialog, .swap, .stub-actions,
+.months, .chart-scroll, #chartHint, .contact-form, .form-error, .form-success, .btn-quiet, .search-btn { display: none !important; }
+.site-head { position: static; border-bottom: 1px solid #000; }
+.head-inner, main, .foot-inner { max-width: none; padding-inline: 0; }
+main { padding-block: 12pt; gap: 16pt; }
+h1, h2 { break-after: avoid; }
+.pass { border: 1.5pt solid #000; border-radius: 8pt; break-inside: avoid; grid-template-columns: 1fr 180px; }
+.pass-stub { border-left: 1.5pt dashed #000; }
+.pass-stub::before, .pass-stub::after { display: none; }
+.fares li { break-inside: avoid; }
+.faq { break-inside: avoid; }
+.faq-body { display: block !important; }
+.faq summary::after { display: none; }
+.prose a[href^="http"]::after { content: " (" attr(href) ")"; font-size: 9pt; word-break: break-all; }
+.site-foot { border-top: 1px solid #000; }

@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en-NZ">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Cookie policy | SouthHop</title>
+  <meta name="description" content="SouthHop doesn't set cookies or use tracking. This page explains what that means.">
+  <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
+  <link rel="preload" href="assets/fonts/public-sans-latin-400-normal.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="print.css" media="print">
+</head>
+<body>
+  <a class="skip" href="#main">Skip to main content</a>
+  <header class="site-head">
+    <div class="head-inner">
+      <a class="brand" href="index.html">
+        <img src="assets/logo.svg" alt="" width="32" height="32">
+        <span>SouthHop</span>
+      </a>
+      <button class="menu-btn" type="button" aria-expanded="false" aria-controls="site-nav">
+        <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+        Menu
+      </button>
+      <nav class="site-nav" id="site-nav" aria-label="Main">
+        <a href="index.html">Fares</a>
+        <a href="faq.html">FAQ</a>
+        <a href="contact.html">Contact</a>
+        <button class="search-btn" type="button" data-open-search>
+          <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><path d="M16 16l4.5 4.5" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+          Search
+        </button>
+      </nav>
+    </div>
+    <div class="progress" aria-hidden="true"><span></span></div>
+  </header>
+
+  <main id="main" class="prose" tabindex="-1">
+    <h1>Cookie policy</h1>
+    <p class="updated-line">Last updated <time datetime="2026-10-10">10 October 2026</time></p>
+    <p>SouthHop doesn't use cookies. This page explains what that covers and what happens when you visit other websites from here.</p>
+
+    <h2 id="none">What we store on your device</h2>
+    <p>Nothing. SouthHop doesn't set cookies, and doesn't use local storage, analytics, advertising pixels, social media widgets or other tracking tools.</p>
+    <p>Our fonts, images and scripts are served from this website. We don't embed maps, videos or content from other websites, so they can't set cookies through our pages either.</p>
+
+    <h2 id="consent">Why there's no cookie banner</h2>
+    <p>Cookie banners ask for permission to store cookies or tracking data that a website doesn't strictly need. SouthHop stores none, so there's nothing to ask about. If we ever add something that needs your permission, we'll ask before it runs and update this page.</p>
+
+    <h2 id="other">Cookies on other websites</h2>
+    <p>When you follow a link to another website, such as Aviasales, Google Flights or Skyscanner, that website may set its own cookies. If a fare link includes our Travelpayouts partner code, Travelpayouts or Aviasales may set a cookie on their own website so they can tell us about a booking. Those cookies are covered by those websites' own policies.</p>
+
+    <h2 id="hosting">Our web host</h2>
+    <p>GitHub, which hosts SouthHop, records visitors' IP addresses for security. It doesn't use cookies for this. See our <a href="privacy.html#visits">privacy policy</a> for details.</p>
+
+    <h2 id="contact">Questions</h2>
+    <p>Email {{CONTACT_EMAIL}} or use the <a href="contact.html">contact page</a>.</p>
+
+  </main>
+
+  <footer class="site-foot">
+    <div class="foot-inner">
+      <div class="foot-about">
+        <p><strong>SouthHop</strong> is run by {{BUSINESS_NAME}}, {{CITY}}, New Zealand. Email {{CONTACT_EMAIL}}.</p>
+        <p>SouthHop shows fares found by other websites. We don't sell tickets. If you book after following a fare link, we may earn a commission from Travelpayouts. You don't pay any extra.</p>
+      </div>
+      <nav class="foot-nav" aria-label="Policies">
+          <a href="privacy.html">Privacy</a>
+          <a href="terms.html">Terms</a>
+          <a href="cookies.html" aria-current="page">Cookies</a>
+          <a href="refunds.html">Refunds</a>
+          <a href="accessibility.html">Accessibility</a>
+      </nav>
+      <p class="foot-small">&copy; 2026 {{BUSINESS_NAME}}. Logo and site design are original to SouthHop. Fonts: Public Sans and Big Shoulders Display, used under the SIL Open Font License. Airline names belong to their owners.</p>
+    </div>
+  </footer>
+
+  <aside class="quick" aria-label="Quick actions">
+    <a class="fab" href="contact.html">Contact us</a>
+    <button class="to-top" type="button" hidden>
+      <svg viewBox="0 0 24 24" width="18" height="18" aria-hidden="true"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span class="to-top-text">Back to top</span>
+    </button>
+  </aside>
+
+  <dialog class="modal search" id="search" aria-labelledby="search-title">
+    <form class="search-form" role="search" method="dialog">
+      <label id="search-title" for="search-q">Search SouthHop</label>
+      <div class="search-row">
+        <input id="search-q" type="search" autocomplete="off" spellcheck="false" placeholder="Try &ldquo;baggage&rdquo; or &ldquo;refund&rdquo;">
+        <button type="button" class="btn-quiet" id="search-close">Close search</button>
+      </div>
+    </form>
+    <p class="search-status" id="search-status" role="status"></p>
+    <ul class="search-results" id="search-results"></ul>
+  </dialog>
+
+  <script src="site.js"></script>
+</body>
+</html>
