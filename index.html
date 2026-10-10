@@ -2,65 +2,90 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SouthHop – Cheapest flights Auckland to Dunedin</title>
-  <meta name="description" content="Live cheapest one-way fares between Auckland (AKL) and Dunedin (DUD), updated every 6 hours.">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>SouthHop</title>
+  <meta name="description" content="The cheapest one-way fares between Auckland (AKL) and Dunedin (DUD), updated every 6 hours.">
   <link rel="icon" href="assets/logo.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;800&family=Public+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <header class="topbar">
-    <a class="brand" href="./">
-      <img src="assets/logo.svg" alt="" width="40" height="40">
-      <span>South<b>Hop</b></span>
-    </a>
-    <span class="updated" id="updated"></span>
-  </header>
+  <div class="wrap">
+    <header class="top">
+      <a class="brand" href="./">
+        <img src="assets/logo.svg" alt="" width="36" height="36">
+        <span>SouthHop</span>
+      </a>
+      <span class="updated" id="updated"></span>
+    </header>
 
-  <main>
-    <section class="hero">
-      <h1>Cheapest flights<br><span id="routeTitle">Auckland → Dunedin</span></h1>
-      <p class="sub">Real fares from airline and travel-agent searches, refreshed every 6 hours. One-way, in NZ dollars.</p>
+    <main>
+      <h1 id="headline">The cheapest way from Auckland to Dunedin</h1>
 
-      <div class="controls">
-        <div class="seg" role="tablist" aria-label="Direction">
-          <button role="tab" data-route="AKL-DUD" aria-selected="true">AKL → DUD</button>
-          <button role="tab" data-route="DUD-AKL" aria-selected="false">DUD → AKL</button>
+      <section class="pass" aria-label="Cheapest fare" aria-live="polite">
+        <div class="pass-main">
+          <div class="route" id="route">
+            <div class="port">
+              <span class="code" id="fromCode">AKL</span>
+              <span class="city" id="fromCity">Auckland</span>
+            </div>
+            <div class="path">
+              <button class="swap" id="swap" type="button" aria-label="Swap direction">
+                <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true"><path d="M4 8h14l-4-4M20 16H6l4 4" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+              </button>
+            </div>
+            <div class="port to">
+              <span class="code" id="toCode">DUD</span>
+              <span class="city" id="toCity">Dunedin</span>
+            </div>
+          </div>
+          <dl class="facts">
+            <div><dt>Date</dt><dd id="pDate">–</dd></div>
+            <div><dt>Departs</dt><dd id="pTime">–</dd></div>
+            <div><dt>Flight</dt><dd id="pFlight">–</dd></div>
+            <div><dt>Flying time</dt><dd id="pDur">–</dd></div>
+          </dl>
         </div>
-        <select id="month" aria-label="Month"></select>
-      </div>
+        <div class="pass-stub">
+          <p class="stub-label" id="stubLabel">Lowest one-way fare</p>
+          <p class="price" id="pPrice">–</p>
+          <a class="book" id="pBook" target="_blank" rel="noopener">See this fare</a>
+        </div>
+      </section>
 
-      <div class="best card" id="best"></div>
-    </section>
+      <section class="block">
+        <h2>When to fly</h2>
+        <div class="months" id="months" role="group" aria-label="Choose a month"></div>
+      </section>
 
-    <section class="card">
-      <div class="card-head">
-        <h2>Price by day</h2>
-        <span class="hint">Tap a bar to see that fare</span>
-      </div>
-      <div class="chart" id="chart"></div>
-    </section>
+      <section class="block">
+        <div class="block-head">
+          <h2>Price for each day</h2>
+          <p class="hint">Pick a day to load it onto the pass.</p>
+        </div>
+        <div class="chart-scroll"><div class="chart" id="chart"></div></div>
+      </section>
 
-    <section class="card">
-      <div class="card-head">
-        <h2>Cheapest dates</h2>
-        <span class="hint" id="count"></span>
-      </div>
-      <ol class="list" id="list"></ol>
-    </section>
+      <section class="block">
+        <div class="block-head">
+          <h2>Ten cheapest days</h2>
+          <p class="hint" id="count"></p>
+        </div>
+        <ol class="fares" id="list"></ol>
+      </section>
 
-    <section class="also">
-      <span>Compare on:</span>
-      <a id="lnkGoogle" target="_blank" rel="noopener">Google Flights</a>
-      <a id="lnkSky" target="_blank" rel="noopener">Skyscanner</a>
-      <a href="https://www.airnewzealand.co.nz" target="_blank" rel="noopener">Air New Zealand</a>
-    </section>
-  </main>
+      <p class="also">
+        Compare on
+        <a id="lnkGoogle" target="_blank" rel="noopener">Google Flights</a>,
+        <a id="lnkSky" target="_blank" rel="noopener">Skyscanner</a> or
+        <a href="https://www.airnewzealand.co.nz" target="_blank" rel="noopener">Air New Zealand</a>.
+      </p>
+    </main>
 
-  <footer>Prices come from the Travelpayouts / Aviasales data feed and can change quickly. Always check the final price before you book.</footer>
+    <footer>Fares are one-way in NZ dollars, from recent Aviasales searches via Travelpayouts. They change often, so check the final price before you book.</footer>
+  </div>
 
   <script src="app.js"></script>
 </body>
